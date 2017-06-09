@@ -34,8 +34,9 @@ public class Correo {
         CargarDatos();
     }
     private void CargarDatos(){
-        Para = EMail.get(EMail, "To").toString();
-        Asunto = EMail.get(EMail, "Subject").toString();
+        Para    = EMail.get(EMail, "To").toString();
+        De      = EMail.get(EMail, "SenderName").toString();
+        Asunto  = EMail.get(EMail, "Subject").toString();
         Mensaje = EMail.get(EMail, "Body").toString();
         NoLeido = EMail.get(EMail, "UnRead").toBoolean();
         

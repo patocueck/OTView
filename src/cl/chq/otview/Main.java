@@ -8,7 +8,11 @@
  * Open. You can then make changes to the template in the Source Editor.
  */
 
-package cl.chq.otview.outlook;
+package cl.chq.otview;
+
+import cl.chq.otview.outlook.Contacto;
+import cl.chq.otview.outlook.Correo;
+import cl.chq.otview.outlook.Outlook;
 
 /**
  *
@@ -27,7 +31,23 @@ public class Main {
     public static void main(String[] args)throws Exception {
         Outlook VV= new Outlook();
         VV.envriarYRecibir();
-        probarCorreoLectura();
+        //probarCorreoLectura();
+        leerOT("2017/0132");
+    }
+    
+    private static void leerOT(String numeroOT){
+        
+        Correo A[]= Outlook.getCorreos();
+        for (Correo A1 : A) {
+            if (A1.getAsunto().contains(numeroOT)) {
+                String t = A1.getAsunto();
+                String a = A1.getDe();
+                t = t.replace("RE: ", "");
+                String e = t.substring(16);
+                //System.out.println("--------------> EL Asunto es: " + t);
+                System.out.println("--------------> El Estado es: " + e + " --> " + a);
+            }
+        }
     }
     
     private static void probarCorreoLectura() {
