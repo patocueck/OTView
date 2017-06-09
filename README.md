@@ -1,2 +1,2 @@
 # OTView
-Verr las OT's de Outlook
+Ver las OT's de Outlook
