@@ -18,20 +18,20 @@ public class OT {
  
     private String numero;
     private ArrayList correos;
-    private EstadoOT estado;
+    private String estado;
 
-    public OT(String numeroOT) {
-        Correo A[]= Outlook.getCorreos();
-        for (Correo A1 : A) {
-            if (A1.getAsunto().contains(numeroOT)) {
-                String t = A1.getAsunto();
-                t = t.replace("RE: ", "");
-                String e = t.substring(16);
+    public OT(String numeroOT) throws Exception {
+        Outlook outlook = new Outlook();
+        correos = new ArrayList();
+        Correo A[]= outlook.getCorreos();
+        int j = 0;
+        for (int i=0; i < A.length; i++) {
+            if (A[i].getAsunto().contains(numeroOT)) {
+                String t = A[i].getAsunto();
+                if ( j == 0) this.estado = obtenerEstado(t);
                 numero = numeroOT;
-                correos.add(A1);
-                //Estado se va reemplazando por el último.
-                estado.valueOf(e);
-                
+                correos.add(A[i]);
+                j++;
             }
         }
     }
@@ -52,11 +52,31 @@ public class OT {
         this.correos = correos;
     }
 
-    public EstadoOT getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoOT estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }    
+
+    private String obtenerEstado(String t) {
+        String sEstado = "";
+        //t: Asunto del correo. "PE CHQ 2017/0157 - A PRODUCCIÓN -  MS Interfaz Cargos"
+        t = t.replace("RE: ", "");
+        //t = t.replaceAll(" ", "");
+        String e = t.substring(17);
+        String segmento[] = e.split("-");
+        //Si segmento = 3 entonces el estado trae guion.
+        if ( segmento.length == 3 ){
+            sEstado = segmento[1];
+        } else{
+            sEstado = segmento[1] + segmento[2];
+        }
+        
+        if (sEstado.startsWith(" ")) sEstado = sEstado.substring(1);
+        if (sEstado.endsWith(" ")) sEstado = sEstado.substring(0, sEstado.length()-1);
+                
+        return sEstado;
+    }
 }

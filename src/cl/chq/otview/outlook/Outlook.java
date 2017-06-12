@@ -10,8 +10,11 @@
 
 package cl.chq.otview.outlook;
 import cl.chq.otview.enums.Carpeta;
-import com.jacob.com.*;
-import com.jacob.activeX.*;
+import com.jacob.activeX.ActiveXComponent;
+//import javax.xml.ws.Dispatch;
+import com.jacob.com.Dispatch;
+import com.jacob.com.Variant;
+//import com.jacob.activeX.*;
 
 /**
  * Conector desde Java a OUTlook
@@ -115,7 +118,7 @@ public class Outlook {
         return (i>max)?null:ret;
     }
     
-    static public Correo[] getCorreos(){
+    public Correo[] getCorreos(){
         Correo ret[];
         Dispatch Inbox = buscarCarpeta(Carpeta.INBOX);
         Dispatch I = D.get(Inbox,"Items").toDispatch();
