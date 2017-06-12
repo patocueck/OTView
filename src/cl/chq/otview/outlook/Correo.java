@@ -10,14 +10,13 @@
 
 package cl.chq.otview.outlook;
 import com.jacob.com.*;
-import com.jacob.activeX.*;
 
 /**
  * Como trabajar un correo
  * @author Javier
  */
 public class Correo {
-    Outlook cX ;
+    
     private Dispatch EMail;
     private String De;
     private String Para;
@@ -25,7 +24,6 @@ public class Correo {
     private String Mensaje;
     private String Archivos[];
     private boolean NoLeido;
-    /** Creates a new instance of Correo */
     
     public Correo() {
     }
@@ -38,8 +36,7 @@ public class Correo {
         De      = EMail.get(EMail, "SenderName").toString();
         Asunto  = EMail.get(EMail, "Subject").toString();
         Mensaje = EMail.get(EMail, "Body").toString();
-        NoLeido = EMail.get(EMail, "UnRead").toBoolean();
-        
+        NoLeido = EMail.get(EMail, "UnRead").toBoolean();   
     }
     
     public String[] getArchivos() {

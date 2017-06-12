@@ -9,7 +9,7 @@
  */
 
 package cl.chq.otview.outlook;
-import cl.chq.otview.outlook.enums.Carpeta;
+import cl.chq.otview.enums.Carpeta;
 import com.jacob.com.*;
 import com.jacob.activeX.*;
 
@@ -122,7 +122,7 @@ public class Outlook {
         int max = I.get(I,"count").toInt();
         ret = new Correo[max];
         for (int i=1; i<=max;i++){
-            ret[i-1]= new Correo(I.call(Inbox, "Items" ,i  ).toDispatch());
+            ret[i-1]= new Correo(I.call(Inbox, "Items" ,i).toDispatch());
         }
         return ret;
     }
