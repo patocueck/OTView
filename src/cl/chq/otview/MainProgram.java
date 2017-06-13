@@ -1,10 +1,10 @@
 
+package cl.chq.otview;
+
 import cl.chq.otview.ot.OT;
 import cl.chq.otview.outlook.Correo;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -46,9 +46,10 @@ public class MainProgram extends javax.swing.JFrame {
         labelNumero = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        labelLink = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Detalle");
+        setTitle("OTView");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setName("aaa"); // NOI18N
@@ -113,6 +114,11 @@ public class MainProgram extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 600, 120));
 
+        labelLink.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        labelLink.setForeground(new java.awt.Color(0, 0, 255));
+        labelLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(labelLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 210, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,7 +161,10 @@ public class MainProgram extends javax.swing.JFrame {
                 listModel.addElement( ((Correo) correos.get(i)).getAsunto() );
             }
             jList1.setModel(listModel);
-
+            
+            //LLena label del link a la OT
+            labelLink.setText(numeroOt);
+            
             
         } catch (Exception e){
             System.out.println("Error: " + e.getLocalizedMessage());
@@ -209,6 +218,7 @@ public class MainProgram extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelEstado;
+    private javax.swing.JLabel labelLink;
     private javax.swing.JLabel labelNumero;
     private javax.swing.JTextField otNumber;
     // End of variables declaration//GEN-END:variables
